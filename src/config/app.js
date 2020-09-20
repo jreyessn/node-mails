@@ -2,13 +2,14 @@ import express from 'express';
 import morgan from 'morgan';
 import pkg from '../../package.json';
 import routes from '../routes/api.routes';
+require('dotenv').config()
 
 const app = express();
 const cors = require('cors');
 
 // global variables
 app.set('pkg', pkg);
-app.set('port', 3221)
+app.set('port', process.env.APP_PORT || 4000)
 
 app.use(morgan('dev'));
 app.use(express.json())

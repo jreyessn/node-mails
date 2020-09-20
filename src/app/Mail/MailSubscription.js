@@ -1,4 +1,4 @@
-import Mailer from '../Library/Mailer';
+import { Mailer, setMailOptions } from '../Library/Mailer';
 import LogEmail from '../Entities/LogEmail';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -21,12 +21,11 @@ const getTemplate = (itemEmail) => {
 
 export const MailSubscription = (itemEmail) => {
 
-    const mailOptions = {
-        from: "no-reply@rawedabou.com",
-        to: "hola@rawedabou.com",
+    const mailOptions = setMailOptions({
+        to: itemEmail.email,
         subject: "Asunto",
         html: getTemplate(itemEmail)
-    }
+    })
     
     return new Promise((resolve, reject) => {
 

@@ -1,13 +1,19 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config()
 
-const transporte = nodemailer.createTransport({
-    host: "smtp.zoho.com",
-    port: 465,
-    secure: 'ssl',
+export const Mailer = nodemailer.createTransport({
+    host: process.env.HOST_SMTP,
+    port: process.env.PORT_SMTP,
+    secure: process.env.SECURE_SMTP,
     auth: {
-        user: "no-reply@rawedabou.com",
-        pass: "enviomasivo"
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
     }
 })
 
-export default transporte;
+export const setMailOptions = (options) => {
+    return {
+        from: process.env.SMTP_FROM,
+        ...options,
+    }
+}

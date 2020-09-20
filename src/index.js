@@ -1,5 +1,6 @@
 import app from './config/app';
 import { startConnection } from './config/database';
+require('dotenv').config()
 
 async function main(){
 
